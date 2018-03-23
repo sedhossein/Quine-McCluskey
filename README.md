@@ -1,4 +1,4 @@
-# Quine-McCluskey
+# Quine-McCluskey VS PHP
 PHP program to illustrate Quine–McCluskey algorithm
 
 The Quine–McCluskey algorithm (or the method of prime implicants) is a method used for minimization of Boolean functions that was developed by Willard V. Quine and extended by Edward J. McCluskey.

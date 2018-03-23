@@ -18,7 +18,7 @@
     #regForm {
         background-color: #ffffff;
         margin: 100px auto;
-        font-family: Raleway;
+        font-family: Arial;
         padding: 40px;
         width: 70%;
         min-width: 300px;
