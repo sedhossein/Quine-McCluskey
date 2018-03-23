@@ -3,7 +3,7 @@
 class QM
 {
     protected $VARIABLES;
-
+    
 
     public function __construct($variables_count)
     {
