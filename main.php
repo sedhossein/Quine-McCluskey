@@ -3,12 +3,18 @@
 include 'QM.php';
 $array = [1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1];
 $ones = [];
-
+//      $number_of_variables
+//      $array_of_minterms
 
 echo "<hr>";
 
 $qm = new QM($number_of_variables);
 
+function make_array($var_count,$minterms_array)
+{
+
+
+}
 
 function make_group($packet, $temp_array)
 {
