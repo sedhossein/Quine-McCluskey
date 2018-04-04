@@ -61,7 +61,7 @@ class QM
     // Eg: 0110 and 0111 becomes 011-
     public static function simplify($number1, $number2)
     {
-        if ( ! self::is_gary($number1, $number2))
+        if ( ! self::is_gray($number1, $number2))
             return false;
 
         for ($index = 0; $index != strlen($number1); $index++) {
@@ -148,7 +148,7 @@ function reduce($minterms) // minterms is an array
     for ($i = 0; $i < $max; $i++) {
         for ($j = $i + 1; $j < $max; $j++) {
             //If a grey code pair is found, replace the differing bits with don't cares.
-            if (QM::is_gary($minterms[$i], $minterms[$j])) {
+            if (QM::is_gray($minterms[$i], $minterms[$j])) {
 
                 $checked[$i] = true;
                 $checked[$j] = true;
