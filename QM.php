@@ -45,7 +45,7 @@ class QM
         return $counter;
     }
 
-    public static function is_gary($number1, $number2)//differs_in_one_bit
+    public static function is_gray($number1, $number2)//differs_in_one_bit
     {
         $flag = 0;
 
