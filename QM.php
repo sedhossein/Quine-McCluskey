@@ -1,17 +1,35 @@
 <?php
 
+/**
+ * Quine-McCluskey
+ * Class QM
+ */
 class QM
 {
+    /**
+     * @var
+     */
     protected $_variable_count;
+
+    /**
+     * @var
+     */
     protected $_do_not_cares;
 
 
+    /**
+     * QM constructor.
+     * @param $variables_count
+     */
     public function __construct($variables_count)
     {
         $this->_variable_count = $variables_count;
     }
 
 
+    /**
+     * @return array
+     */
     protected function fill_letters_in_array()
     {
         $letters = ["a", "b", "c", "d", "e", "f", "g", "h"];
@@ -23,6 +41,11 @@ class QM
         return $array;
     }
 
+
+    /**
+     * @param $binary
+     * @return string
+     */
     public function pad($binary)
     {
         $max = $this->_variable_count - strlen($binary);
@@ -33,6 +56,12 @@ class QM
         return $binary;
     }
 
+
+    /**
+     * @param $array
+     * @param $target_number
+     * @return int
+     */
     public static function count($array, $target_number)
     {
         $counter = 0;
@@ -45,6 +74,12 @@ class QM
         return $counter;
     }
 
+
+    /**
+     * @param $number1
+     * @param $number2
+     * @return bool
+     */
     public static function is_gray($number1, $number2)//differs_in_one_bit
     {
         $flag = 0;
@@ -57,11 +92,16 @@ class QM
     }
 
 
-    //function to replace complement terms with don't cares to reduce minterms
-    // Eg: 0110 and 0111 becomes 011-
+    /**
+     *   function to replace complement terms with don't cares to reduce minterms
+     *   Eg: 0110 and 0111 becomes 011-
+     * @param $number1
+     * @param $number2
+     * @return bool|string
+     */
     public static function simplify($number1, $number2)
     {
-        if ( ! self::is_gray($number1, $number2))
+        if (!self::is_gray($number1, $number2))
             return false;
 
         for ($index = 0; $index != strlen($number1); $index++) {
@@ -73,18 +113,11 @@ class QM
         return 'NULL';
     }
 
-//    public static function my_in_array($array, $target) //test
-//    {
-//        print_r($array);
-//        die();
-//
-//        for ($index = 0; $index < count($array); $index++)
-//            if ($array[$index] == $target)
-//                return true;
-//
-//        return false;
-//    }
 
+    /**
+     * @param $a
+     * @return string
+     */
     public function getValue($a)
     {
         $temp = "";
@@ -106,13 +139,17 @@ class QM
 
 }
 
+/**
+ * @param $aa
+ * @param $bb
+ * @return string
+ */
 function replace_complements($aa, $bb)
 {
     $temp = "";
     $a = strval($aa) . "";
     $b = (string)$bb . "";
-//    print strlen($a);
-//    die();
+
     for ($i = 0; $i < strlen($a); $i++) {
         if ($a[$i] != $b[$i])
             $temp .= "-";
@@ -120,10 +157,14 @@ function replace_complements($aa, $bb)
             $temp .= $a[$i];
     }
 
-
     return $temp;
 }
 
+/**
+ * @param $a
+ * @param $b
+ * @return bool
+ */
 function array_equal($a, $b)
 {
     return (
@@ -135,6 +176,10 @@ function array_equal($a, $b)
 }
 
 
+/**
+ * @param $minterms
+ * @return array
+ */
 function reduce($minterms) // minterms is an array
 {
     $new_minterms = [];
@@ -153,7 +198,7 @@ function reduce($minterms) // minterms is an array
                 $checked[$i] = true;
                 $checked[$j] = true;
 
-                if ( ! in_array(replace_complements($minterms[$i], $minterms[$j]), $new_minterms)) {
+                if (!in_array(replace_complements($minterms[$i], $minterms[$j]), $new_minterms)) {
                     $new_minterms[] = replace_complements($minterms[$i], $minterms[$j]);
                 }
             }
@@ -163,9 +208,9 @@ function reduce($minterms) // minterms is an array
     //appending all reduced terms to a new vector
 
 
-    for ($i = 0; $i < $max; $i++){
+    for ($i = 0; $i < $max; $i++) {
 //        print $minterms[$i] . " = ";
-        if ($checked[$i] != 1 && ! in_array($minterms[$i], $new_minterms)){
+        if ($checked[$i] != 1 && !in_array($minterms[$i], $new_minterms)) {
             $new_minterms[] = $minterms[$i];
         }
 
